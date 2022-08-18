@@ -1,0 +1,5 @@
+name: TurtleSMP
+version: '${version}'
+main: me.yoursole.turtlesmp.TurtleSMP
+api-version: 1.19
+authors: [ Yoursole ]
