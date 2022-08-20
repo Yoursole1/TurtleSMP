@@ -37,10 +37,14 @@ class Loop extends Thread{
 
                 DataHolder.data.setSeconds(p.getUniqueId(), DataHolder.data.getSeconds(p.getUniqueId()) +1);
                 if(DataHolder.data.getTimePlayingSeconds().get(p.getUniqueId()) % 10800 == 0){
-                    DataHolder.data.setSeconds(p.getUniqueId(), 0L);
-                    DataHolder.data.setLives(p.getUniqueId(), DataHolder.data.getLives(p.getUniqueId())+1);
-                    p.sendMessage(ChatColor.GREEN+"You gained a life (playtime)!");
-                    p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 5);
+                    if(DataHolder.data.getLives(p.getUniqueId()) < 5){
+                        DataHolder.data.setSeconds(p.getUniqueId(), 0L);
+                        DataHolder.data.setLives(p.getUniqueId(), DataHolder.data.getLives(p.getUniqueId())+1);
+                        p.sendMessage(ChatColor.GREEN+"You gained a life (playtime)!");
+                        p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 5);
+                    }else{
+                        p.sendMessage(ChatColor.RED+"You reached 3 hours of playtime, but didn't gain a life because it is capped at 5");
+                    }
                 }
                 p.sendActionBar(new TextComponent(ChatColor.GREEN + "You have "+ DataHolder.data.getLives(p.getUniqueId())+" lives left"));
             }
