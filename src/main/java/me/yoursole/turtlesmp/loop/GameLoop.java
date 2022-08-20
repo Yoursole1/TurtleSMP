@@ -3,6 +3,7 @@ package me.yoursole.turtlesmp.loop;
 
 import me.yoursole.turtlesmp.TurtleSMP;
 import me.yoursole.turtlesmp.data.DataHolder;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -30,7 +31,7 @@ class Loop extends Thread{
 
             for(Player p : Bukkit.getOnlinePlayers()){
                 if(DataHolder.data.isAfk(p)){
-                    p.sendActionBar(ChatColor.RED+"You are registered as AFK (no life points)");
+                    p.sendActionBar(new TextComponent(ChatColor.RED+"You are registered as AFK (no life points)"));
                     continue;
                 }
 
@@ -41,7 +42,7 @@ class Loop extends Thread{
                     p.sendMessage(ChatColor.GREEN+"You gained a life (playtime)!");
                     p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 5);
                 }
-                p.sendActionBar(ChatColor.GREEN + "You have "+ DataHolder.data.getLives(p.getUniqueId())+" lives left");
+                p.sendActionBar(new TextComponent(ChatColor.GREEN + "You have "+ DataHolder.data.getLives(p.getUniqueId())+" lives left"));
             }
 
         }, 0L, 20L);

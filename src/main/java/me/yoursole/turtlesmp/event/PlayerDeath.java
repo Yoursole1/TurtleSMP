@@ -13,7 +13,6 @@ public class PlayerDeath implements Listener {
 
         if(!(DataHolder.data.getLivesLeft().get(e.getPlayer().getUniqueId()) != null &&
         DataHolder.data.getLives(e.getPlayer().getUniqueId()) <= 0)){
-            e.setCancelled(true);
             DataHolder.data.removeLife(e.getPlayer().getUniqueId());
             return;
         }
